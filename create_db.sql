@@ -1,117 +1,106 @@
-DROP TABLE glpi_computers CASCADE CONSTRAINTS;
-CREATE TABLE glpi_computers (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(255),
-    inventory_number VARCHAR2(50),
-    ip_address VARCHAR2(50),
-    location_id NUMBER,
-    FOREIGN KEY (location_id) REFERENCES glpi_locations(id)
-);
+-- USER MANAGEMENT  
 
-DROP TABLE glpi_printers CASCADE CONSTRAINTS;
-CREATE TABLE glpi_printers (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(255),
-    model VARCHAR2(50),
-    location_id NUMBER,
-    FOREIGN KEY (location_id) REFERENCES glpi_locations(id)
-);
-
-DROP TABLE glpi_locations CASCADE CONSTRAINTS;
-CREATE TABLE glpi_locations (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(255),
-    address VARCHAR2(255)
-);
-
-DROP TABLE glpi_users CASCADE CONSTRAINTS;
-CREATE TABLE glpi_users (
+DROP TABLE glpi_user CASCADE CONSTRAINTS;
+CREATE TABLE glpi_user (
     id NUMBER PRIMARY KEY,
     group_id NUMBER,
-    firstname VARCHAR2(255),
-    lastname VARCHAR2(255),
-    email VARCHAR2(255),
-    FOREIGN KEY (group_id) REFERENCES glpi_groups(id)
+    firstname VARCHAR2(30),
+    lastname VARCHAR2(30),
+    email VARCHAR2(55),
+    FOREIGN KEY (group_id) REFERENCES glpi_group(id)
 );
 
-DROP TABLE glpi_groups CASCADE CONSTRAINTS;
-CREATE TABLE glpi_groups (
+DROP TABLE glpi_group CASCADE CONSTRAINTS;
+CREATE TABLE glpi_group (
     id NUMBER PRIMARY KEY,
     name VARCHAR2(255),
     description VARCHAR2(255),
     members VARCHAR2(1024)
 );
 
-DROP TABLE glpi_networkports CASCADE CONSTRAINTS;
-CREATE TABLE glpi_networkports (
+-- COMPUTER HARDWARE MANAGEMENT 
+
+DROP TABLE glpi_computer CASCADE CONSTRAINTS;
+CREATE TABLE glpi_computer (
+    id NUMBER PRIMARY KEY,
+    ip_address VARCHAR2(50),
+    location_id NUMBER,
+    user_id NUMBER,
+    FOREIGN KEY (location_id) REFERENCES glpi_location(id)
+    FOREIGN KEY (user_id) REFERENCES glpi_user(id)
+);
+
+-- keyboard, monitor ...
+DROP TABLE glpi_computer_device CASCADE CONSTRAINTS;
+CREATE TABLE glpi_computer_device (
+    id NUMBER PRIMARY KEY,
+    computer_id NUMBER,
+    device_name VARCHAR2(50),
+    device_type VARCHAR2(50),
+    FOREIGN KEY (computer_id) REFERENCES glpi_computer(id)
+);
+
+DROP TABLE glpi_location CASCADE CONSTRAINTS;
+CREATE TABLE glpi_location (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(30),
+    address VARCHAR2(50)
+);
+
+-- Information about routers, commutators ... 
+DROP TABLE glpi_network_equipment CASCADE CONSTRAINTS;
+CREATE TABLE glpi_network_equipment (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(50),
+    type VARCHAR2(50) -- hub, switch, gateway, router ... 
+);
+
+-- MANAGEMENT OF NETWORK STRUCTURE INFORMATION 
+
+-- Information about the network of the organization 
+DROP TABLE glpi_network CASCADE CONSTRAINTS;
+CREATE TABLE glpi_network (
+    id NUMBER PRIMARY KEY,
+    name VARCHAR2(50),
+    ip_range VARCHAR2(255)
+);
+
+-- Link between computers and networks : which computer is associated with which network. 
+
+DROP TABLE glpi_network_port CASCADE CONSTRAINTS;
+CREATE TABLE glpi_network_port (
     id NUMBER PRIMARY KEY,
     computer_id NUMBER,
     mac_address VARCHAR2(50),
     status VARCHAR2(50),
-    FOREIGN KEY (computer_id) REFERENCES glpi_computers(id)
+    FOREIGN KEY (computer_id) REFERENCES glpi_computer(id)
 );
 
-DROP TABLE glpi_networkports_ipaddresses CASCADE CONSTRAINTS;
-CREATE TABLE glpi_networkports_ipaddresses (
+-- Information about IP addresses associated with each network port 
+DROP TABLE glpi_network_port_ip_address CASCADE CONSTRAINTS;
+CREATE TABLE glpi_network_port_ip_address (
     id NUMBER PRIMARY KEY,
     port_id NUMBER,
     ip_address VARCHAR2(50),
-    FOREIGN KEY (port_id) REFERENCES glpi_networkports(id)
+    FOREIGN KEY (port_id) REFERENCES glpi_network_port(id)
 );
 
-DROP TABLE glpi_networks CASCADE CONSTRAINTS;
-CREATE TABLE glpi_networks (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(255),
-    ip_range VARCHAR2(255)
-);
-
-DROP TABLE glpi_networkequipments CASCADE CONSTRAINTS;
-CREATE TABLE glpi_networkequipments (
-    id NUMBER PRIMARY KEY,
-    name VARCHAR2(255),
-    type VARCHAR2(50)
-);
-
-DROP TABLE glpi_networkequipmentports CASCADE CONSTRAINTS;
-CREATE TABLE glpi_networkequipmentports (
+-- Information about the ports on the network equipements :  which equipment the port is associated with.
+DROP TABLE glpi_network_equipment_port CASCADE CONSTRAINTS;
+CREATE TABLE glpi_networkequipmentport (
     id NUMBER PRIMARY KEY,
     equipment_id NUMBER,
     port_number NUMBER,
-    FOREIGN KEY (equipment_id) REFERENCES glpi_networkequipments(id)
+    FOREIGN KEY (equipment_id) REFERENCES glpi_network_equipment(id)
 );
 
-DROP TABLE glpi_items_networkports;
-CREATE TABLE glpi_items_networkports (
+-- Link between computers and port networks : which computer is connected to which network port.
+DROP TABLE glpi_item_network_port;
+CREATE TABLE glpi_item_network_port (
     id NUMBER PRIMARY KEY,
     computer_id NUMBER,
     port_id NUMBER,
-    FOREIGN KEY (computer_id) REFERENCES glpi_computers(id),
-    FOREIGN KEY (port_id) REFERENCES glpi_networkports(id)
+    FOREIGN KEY (computer_id) REFERENCES glpi_computer(id),
+    FOREIGN KEY (port_id) REFERENCES glpi_network_port(id)
 );
 
-DROP TABLE glpi_items_networks;
-CREATE TABLE glpi_items_networks (
-    id NUMBER PRIMARY KEY,
-    computer_id NUMBER,
-    network_id NUMBER,
-    FOREIGN KEY (computer_id) REFERENCES glpi_computers(id),
-    FOREIGN KEY (network_id) REFERENCES glpi_networks(id)
-);
-
-DROP TABLE glpi_computerdevices CASCADE CONSTRAINTS;
-CREATE TABLE glpi_computerdevices (
-    id NUMBER PRIMARY KEY,
-    computer_id NUMBER,
-    device_name VARCHAR2(255),
-    device_type VARCHAR2(50),
-    FOREIGN KEY (computer_id) REFERENCES glpi_computers(id)
-);
-DROP TABLE glpi_monitors CASCADE CONSTRAINTS;
-CREATE TABLE glpi_monitors (
-    id NUMBER PRIMARY KEY,
-    computer_id NUMBER,
-    brand VARCHAR2(50),
-    model VARCHAR2(50),
-    FOREIGN KEY (computer_id) REFERENCES glpi_computers(id)
-);

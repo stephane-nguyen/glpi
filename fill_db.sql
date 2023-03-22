@@ -44,11 +44,11 @@ INSERT INTO glpi_networkequipmentports (id, equipment_id, port_number) VALUES (3
 INSERT INTO glpi_networkequipmentports (id, equipment_id, port_number) VALUES (4, 2, 2);
 INSERT INTO glpi_networkequipmentports (id, equipment_id, port_number) VALUES (5, 3, 1);
 
-INSERT INTO glpi_locations (id, name, address) VALUES (1, 'Bureau A', '10 rue de la Paix');
-INSERT INTO glpi_locations (id, name, address) VALUES (2, 'Bureau B', '20 rue de la Liberté');
-INSERT INTO glpi_locations (id, name, address) VALUES (3, 'Bureau B', '10 rue des Lilas');
-INSERT INTO glpi_locations (id, name, address) VALUES (4, 'Salle de conférence', '20 avenue de la République');
-INSERT INTO glpi_locations (id, name, address) VALUES (5, 'Bureau C', '5 rue de la Paix');
+INSERT INTO glpi_location (id, name, address) VALUES (1, 'Bureau A', '10 rue de la Paix');
+INSERT INTO glpi_location (id, name, address) VALUES (2, 'Bureau B', '20 rue de la Liberté');
+INSERT INTO glpi_location (id, name, address) VALUES (3, 'Bureau B', '10 rue des Lilas');
+INSERT INTO glpi_location (id, name, address) VALUES (4, 'Salle de conférence', '20 avenue de la République');
+INSERT INTO glpi_location (id, name, address) VALUES (5, 'Bureau C', '5 rue de la Paix');
 
 INSERT INTO glpi_items_networkports (id, computer_id, port_id) VALUES (1, 1, 1);
 INSERT INTO glpi_items_networkports (id, computer_id, port_id) VALUES (2, 2, 2);
@@ -62,22 +62,8 @@ INSERT INTO glpi_items_networks (id, computer_id, network_id) VALUES (3, 3, 3);
 INSERT INTO glpi_items_networks (id, computer_id, network_id) VALUES (4, 4, 4);
 INSERT INTO glpi_items_networks (id, computer_id, network_id) VALUES (5, 5, 5);
 
-INSERT INTO glpi_computerdevices (id, computer_id, device_name, device_type) VALUES (1, 1, 'Imprimante', 'USB');
-INSERT INTO glpi_computerdevices (id, computer_id, device_name, device_type) VALUES (2, 2, 'Scanner', 'USB');
-INSERT INTO glpi_computerdevices (id, computer_id, device_name, device_type) VALUES (3, 3, 'Cam�ra', 'USB');
-INSERT INTO glpi_computerdevices (id, computer_id, device_name, device_type) VALUES (4, 4, 'Haut-parleur', 'USB');
-INSERT INTO glpi_computerdevices (id, computer_id, device_name, device_type) VALUES (5, 5, 'Microphone', 'USB');
-
-INSERT INTO glpi_printers (id, name, model, location_id) VALUES (1, 'HP LaserJet Pro', 'M102a', 2);
-INSERT INTO glpi_printers (name, model, location_id) VALUES ('Epson EcoTank', 'L3150', 3);
-INSERT INTO glpi_printers (id, name, model) VALUES (3, 'Canon PIXMA', 'TS3320', 1);
-INSERT INTO glpi_printers (id, name, model, location_id) VALUES (4, 'Brother MFC-L2750DW XL', 'XL', 1);
-INSERT INTO glpi_printers (id, name, model, location_id) VALUES (5, 'Samsung Xpress', 'M2020', 2);
-
-
-
-INSERT INTO glpi_monitors (id, computer_id, brand, model) VALUES (1, 1, 'Dell', 'SE2417HG');
-INSERT INTO glpi_monitors (id, computer_id, brand, model) VALUES (2, 2, 'AOC', 'C24G1');
-INSERT INTO glpi_monitors (id, computer_id, brand, model) VALUES (3, 3, 'Asus', 'VG245H');
-INSERT INTO glpi_monitors (id, computer_id, brand, model) VALUES (4, 4, 'BenQ', 'GL2480');
-INSERT INTO glpi_monitors (id, computer_id, brand, model) VALUES (5, 5, 'LG', '27MK400H-B');
+INSERT INTO glpi_computer_device (id, computer_id, device_name, device_type) VALUES (1, 1, 'Imprimante', 'USB');
+INSERT INTO glpi_computer_device (id, computer_id, device_name, device_type) VALUES (2, 2, 'Scanner', 'USB');
+INSERT INTO glpi_computer_device (id, computer_id, device_name, device_type) VALUES (3, 3, 'Cam�ra', 'USB');
+INSERT INTO glpi_computer_device (id, computer_id, device_name, device_type) VALUES (4, 4, 'Haut-parleur', 'USB');
+INSERT INTO glpi_computer_device (id, computer_id, device_name, device_type) VALUES (5, 5, 'Microphone', 'USB');
