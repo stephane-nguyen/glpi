@@ -30,9 +30,12 @@ BEGIN
    DBMS_OUTPUT.PUT_LINE('Ticket created successfully');
 
 EXCEPTION
+   WHEN DUP_VAL_ON_INDEX THEN 
+      DBMS_OUTPUT.PUT_LINE('A ticket with the id has already been created');
+      DBMS_OUTPUT.PUT_LINE('Solution : enter a different p_ticket_id');
    WHEN OTHERS THEN
       ROLLBACK;
-      DBMS_OUTPUT.PUT_LINE('Error creating ticket');
+      DBMS_OUTPUT.PUT_LINE( 'Error Message ' || SQLERRM);
 END;
 /
 
@@ -52,10 +55,33 @@ BEGIN
       FETCH c_tickets INTO v_id, v_description, v_date;
       EXIT WHEN c_tickets%NOTFOUND;
       
-      -- Process the ticket record here, for example print it to the console
+      -- Print all tickets to the console 
       DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || v_id || ', Description: ' || v_description || ', Created Date: ' || v_date);
    END LOOP;
    
    CLOSE c_tickets;
 END;
 /
+
+
+
+CREATE OR REPLACE PROCEDURE create_ticket(
+    p_description IN ticket.description%TYPE,
+    p_date IN ticket.date%TYPE,
+    p_computer_id IN ticket.computer_id%TYPE,
+    p_computer_device_id IN ticket.computer_device_id%TYPE,
+    p_software_id IN ticket.software_id%TYPE
+)
+AS
+BEGIN
+   INSERT INTO ticket(description, date, computer_id, computer_device_id, software_id)
+   VALUES(p_description, p_date, p_computer_id, p_computer_device_id, p_software_id);
+    
+   COMMIT;
+    
+   DBMS_OUTPUT.PUT_LINE('Ticket created successfully');
+EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK;
+      DBMS_OUTPUT.PUT_LINE('Error creating ticket: ' || SQLERRM);
+END;
