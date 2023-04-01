@@ -4,7 +4,7 @@ CREATE OR REPLACE PROCEDURE create_ticket_for_unique_problem(
    p_ticket_id IN ticket.id%TYPE,
    p_description IN ticket.description%TYPE,
    p_computer_id IN ticket.computer_id%TYPE,
-   p_device_id IN ticket.device_id%TYPE,
+   p_computer_device_id IN ticket.computer_device_id%TYPE,
    p_software_id IN ticket.software_id%TYPE
 ) AS
 -- ################## Check if multiple foreign keys are specified ##################
@@ -12,7 +12,7 @@ BEGIN
   IF p_computer_id IS NOT NULL THEN
     v_fk_count := v_fk_count + 1;
   END IF;
-  IF p_device_id IS NOT NULL THEN
+  IF p_computer_device_id IS NOT NULL THEN
     v_fk_count := v_fk_count + 1;
   END IF;
   IF p_software_id IS NOT NULL THEN
@@ -24,7 +24,7 @@ BEGIN
    END IF;
    
    INSERT INTO ticket (ticket_id, description, date, computer_id, computer_device_id, software_id)
-   VALUES (p_ticket_id, p_description, p_date, p_computer_id, p_device_id, p_software_id);
+   VALUES (p_ticket_id, p_description, p_date, p_computer_id, p_computer_device_id, p_software_id);
    
    COMMIT;
    DBMS_OUTPUT.PUT_LINE('Ticket created successfully');
