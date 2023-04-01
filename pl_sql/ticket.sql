@@ -59,3 +59,11 @@ BEGIN
    CLOSE c_tickets;
 END;
 /
+
+-- from cergy site, display all tickets
+SELECT id, description, date
+FROM ticket_cergy
+UNION ALL
+SELECT id, description, date
+FROM ticket_pau@cergy_to_pau;
+
