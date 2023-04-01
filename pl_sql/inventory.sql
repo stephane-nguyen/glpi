@@ -27,7 +27,7 @@ BEGIN
     SET software_quantity = software_quantity - 1;
     IF inventory.software_quantity <= 0 THEN
         UPDATE inventory SET software_quantity = 0;
-        RAISE_APPLICATION_ERROR(-20001, 'Computer is out of stock!');
+        RAISE_APPLICATION_ERROR(-20001, 'Software is out of stock!');
     END IF;
   END IF;
 END;
@@ -44,7 +44,7 @@ BEGIN
     SET device_quantity = device_quantity - 1;
     IF inventory.device_quantity <= 0 THEN
         UPDATE inventory SET device_quantity = 0;
-        RAISE_APPLICATION_ERROR(-20001, 'Computer is out of stock!');
+        RAISE_APPLICATION_ERROR(-20001, 'Device is out of stock!');
     END IF;
   END IF;
 END;

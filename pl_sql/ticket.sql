@@ -39,6 +39,7 @@ EXCEPTION
 END;
 /
 
+-- Print all tickets to the console 
 DECLARE
    CURSOR c_tickets IS
       SELECT id, description, date
@@ -55,7 +56,6 @@ BEGIN
       FETCH c_tickets INTO v_id, v_description, v_date;
       EXIT WHEN c_tickets%NOTFOUND;
       
-      -- Print all tickets to the console 
       DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || v_id || ', Description: ' || v_description || ', Created Date: ' || v_date);
    END LOOP;
    
