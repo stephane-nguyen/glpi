@@ -103,7 +103,7 @@ DELETE FROM computer_device_cergy;
 INSERT INTO computer_device_cergy (id, name) VALUES (3001, 'souris');
 INSERT INTO computer_device_cergy (id, name) VALUES (3002, 'clavier');
 INSERT INTO computer_device_cergy (id, name) VALUES (3003, 'écran');
-INSERT INTO computer_device_cergy (id, name) VALUES (3004, 'cable réseau');
+INSERT INTO computer_device_cergy (id, name) VALUES (3004, 'cable');
 INSERT INTO computer_device_cergy (id, name) VALUES (3005, 'imprimante');
 
 -- Software
