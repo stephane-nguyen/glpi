@@ -83,6 +83,20 @@ ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_user_id FOREIGN KEY (user_
 ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_computer_device_id FOREIGN KEY (computer_device_id) REFERENCES computer_device_cergy (id);
 ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_software_id FOREIGN KEY (software_id) REFERENCES software (id);
 
+/**
+-- création du cluster
+CREATE CLUSTER computers_and_users_cluster
+   (id_cluster NUMBER(10))
+   SIZE 1024
+   TABLESPACE my_tablespace
+   HASHKEYS 1024;
+ 
+-- association des tables au cluster
+ALTER TABLE user_cergy CLUSTER computers_and_users_cluster (id_cluster);
+ALTER TABLE computer_cergy CLUSTER computers_and_users_cluster (id_cluster);
+ALTER TABLE computer_device_cergy CLUSTER computers_and_users_cluster (id_cluster);
+ALTER TABLE software CLUSTER computers_and_users_cluster (id_cluster);  
+****/
 
 /** ======== INSERTIONS DE DONNEES CERGY ========= **/
 
@@ -97,6 +111,7 @@ INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (1002, 'Marie', '
 INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (1003, 'Luc', 'Dubois', 'luc.dubois@cergy.fr');
 INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (1004, 'Sophie', 'Lecomte', 'sophie.lecomte@cergy.fr');
 INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (1005, 'Pierre', 'Morel', 'pierre.morel@cergy.fr');
+
 
 -- Computer Device Cergy
 DELETE FROM computer_device_cergy;
