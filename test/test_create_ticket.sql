@@ -1,60 +1,49 @@
+-- EXECUTION QUI MARCHE : on utilise un id qui n'existe pas
+DELETE FROM ticket_cergy WHERE id = 5050;
+EXECUTE create_ticket(5050, 1001, 'Probleme de clavier', SYSDATE, NULL, 3002, NULL, 'Cergy');/
+
+-- EXECUTION QUI NE MARCHE PAS ET LANCE UNE EXCEPTION : on utilise un id qui existe déjà
+EXECUTE create_ticket(5001, 1001, 'Probleme de clavier', SYSDATE, NULL, NULL, NULL, 'Cergy');/
+
+-- On vérifie que le ticket a bien été créé
+select * from ticket_cergy;
+/****************************************************************************************/
+
+
+
 -- should get an error : cannot specify more than one foreign key 
-BEGIN
-   create_ticket_for_unique_problem(
-      p_ticket_id => 2,
-      p_description => 'Computer issue with both device and software',
-      p_date => SYSDATE,
-      p_computer_id => 1234,
-      p_device_id => 5678,
-      p_software_id => 9012
-   );
-END;
+EXECUTE create_ticket_unique_problem(
+   p_id => 2,
+   p_user_id => 1001,
+   p_description => 'Computer issue with both device and software',
+   p_ticket_date => SYSDATE,
+   p_computer_id => 2005,
+   p_computer_device_id => 3001,
+   p_software_id => 4001,
+   p_city => 'Cergy'
+);
 /
 
-BEGIN
-   create_ticket_for_unique_problem(
-      p_ticket_id => 2,
-      p_description => 'Computer and usb key issue',
-      p_date => SYSDATE,
-      p_computer_id => 1,
-      p_device_id => 1
-      );
-END;
+EXECUTE create_ticket_unique_problem(
+   p_id => 3,
+   p_user_id => 1002,
+   p_description => 'Computer and usb key issue',
+   p_ticket_date => SYSDATE,
+   p_computer_id => 2005,
+   p_computer_device_id => 3002,
+   p_software_id => NULL,
+   p_city => 'Cergy'
+);
 /
 
 -- should work 
-BEGIN
-   create_ticket_for_unique_problem(
-      p_ticket_id => 1,
-      p_ticket_desc => 'Computer issue',
-      p_ticket_date => SYSDATE,
-      p_computer_id => 1234,
-      p_device_id => NULL,
-      p_software_id => NULL
-   );
-END;
-/
-
--- insert a duplicate in the table 
-BEGIN
-   create_ticket_for_unique_problem(
-      p_ticket_id => 1,
-      p_ticket_desc => 'Computer issue',
-      p_ticket_date => SYSDATE,
-      p_computer_id => 1234,
-      p_device_id => NULL,
-      p_software_id => NULL
-   );
-END;
-/
-  
--- Create a ticket with a computer and computer_device issue
-BEGIN
-  create_ticket(
-      p_description => 'Computer not turning on and keyboard keys broken',
-      p_computer_id => 123,
-      p_computer_device_id => 456,
-      p_software_id => NULL
-  );
-END;
-/
+EXECUTE create_ticket_unique_problem(
+   p_id => 1,
+   p_user_id => 123,
+   p_description => 'Computer issue',
+   p_ticket_date => SYSDATE,
+   p_computer_id => 2005,
+   p_computer_device_id => NULL,
+   p_software_id => NULL,
+   p_city => 'Cergy'
+);
