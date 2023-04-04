@@ -49,7 +49,7 @@ CREATE TABLE ticket_cergy (
     software_id NUMBER,
     ticket_date DATE NOT NULL, 
     description VARCHAR(30) NOT NULL,
-    ville VARCHAR(10) NOT NULL
+    city VARCHAR(10) NOT NULL
 );
 
 DROP TABLE computer_cergy CASCADE CONSTRAINTS;
@@ -147,11 +147,11 @@ INSERT INTO admin (id, firstname, lastname, email, inventory) VALUES (1001, 'VoK
 
 -- Ticket Cergy
 DELETE FROM ticket_cergy;
-INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5001, 1001, NULL, 3001, NULL, TO_DATE('2023-03-31 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'souris ne marche pas', 'CERGY');
-INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5002, 1002, NULL, 3002, NULL, TO_DATE('2023-03-31 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'clavier ne marche pas', 'CERGY');
-INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5003, 1003, NULL, 3001, NULL, TO_DATE('2023-03-31 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'souris ne marche pas', 'CERGY');
-INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5004, 1004, NULL, NULL, 4003, TO_DATE('2023-04-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel office', 'CERGY');
-INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5005, 1005, 2005, NULL, NULL, TO_DATE('2023-04-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ordinateur en panne', 'CERGY');
+INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5001, 1001, NULL, 3001, NULL, TO_DATE('2023-03-31 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'souris ne marche pas', 'CERGY');
+INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5002, 1002, NULL, 3002, NULL, TO_DATE('2023-03-31 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'clavier ne marche pas', 'CERGY');
+INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5003, 1003, NULL, 3001, NULL, TO_DATE('2023-03-31 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'souris ne marche pas', 'CERGY');
+INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5004, 1004, NULL, NULL, 4003, TO_DATE('2023-04-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel office', 'CERGY');
+INSERT INTO ticket_cergy (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5005, 1005, 2005, NULL, NULL, TO_DATE('2023-04-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ordinateur en panne', 'CERGY');
 
 -- Affichage des tickets
 select * from ticket_cergy;

@@ -31,7 +31,7 @@ CREATE TABLE ticket_pau (
     software_id NUMBER,
     ticket_date DATE NOT NULL, 
     description VARCHAR(30),
-    ville VARCHAR(10) NOT NULL
+    city VARCHAR(10) NOT NULL
 );
 
 DROP TABLE computer_pau CASCADE CONSTRAINTS;
@@ -108,11 +108,11 @@ INSERT INTO computer_pau (id, computer_device_id, software_id, user_id) VALUES (
 
 -- Ticket Pau
 DELETE FROM ticket_pau;
-INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5001, 1001, NULL, 3005, NULL, TO_DATE('2023-03-31 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'imprimante ne marche pas', 'PAU');
-INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5002, 1002, NULL, 3004, NULL, TO_DATE('2023-03-31 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'cable réseau ne marche pas', 'PAU');
-INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5003, 1003, 2003, NULL, NULL, TO_DATE('2023-03-31 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ordinateur ne marche pas', 'PAU');
-INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5004, 1004, NULL, NULL, 4003, TO_DATE('2023-04-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel office', 'PAU');
-INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, ville) VALUES (5005, 1005, NULL, NULL, 4004, TO_DATE('2023-04-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel adobe', 'PAU');
+INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5001, 1001, NULL, 3005, NULL, TO_DATE('2023-03-31 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'imprimante ne marche pas', 'PAU');
+INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5002, 1002, NULL, 3004, NULL, TO_DATE('2023-03-31 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'cable réseau ne marche pas', 'PAU');
+INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5003, 1003, 2003, NULL, NULL, TO_DATE('2023-03-31 14:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'ordinateur ne marche pas', 'PAU');
+INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5004, 1004, NULL, NULL, 4003, TO_DATE('2023-04-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel office', 'PAU');
+INSERT INTO ticket_pau (id, user_id, computer_id, computer_device_id, software_id, ticket_date, description, city) VALUES (5005, 1005, NULL, NULL, 4004, TO_DATE('2023-04-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'besoin du logiciel adobe', 'PAU');
 
 -- affichage des tickets
 select * from ticket_pau;
