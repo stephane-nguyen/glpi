@@ -4,18 +4,29 @@
 /************** SEQUENCES **************/
 
 
-
+/***********************************************/
 -- Génération d'utilisateurs au hasard dans la table user_cergy
-CREATE SEQUENCE user_cergy_seq START WITH 1006 INCREMENT BY 1 MAXVALUE 1010 NOCYCLE;
-INSERT INTO user_cergy (id, firstname, lastname, email)
-VALUES (user_cergy_seq.NEXTVAL, 'UTILISATEURS', 'SEQUENCES', 'UTILISATEURS@SEQUENCES.fr');
+DROP SEQUENCE user_cergy_seq;
+CREATE SEQUENCE user_cergy_seq START WITH 1006 INCREMENT BY 1 MAXVALUE 1015 NOCYCLE NOCACHE;
+BEGIN
+  FOR i IN 1005..1015 LOOP
+    DELETE FROM computer_device_cergy WHERE id = i;   
+    INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (user_cergy_seq.NEXTVAL, 'UTILISATEURS', 'SEQUENCES', 'UTILISATEURS@SEQUENCES.fr');
+  END LOOP;
+END;
+/
+
+
 
 
 --Vérification
-SELECT * FROM computer_device_cergy;
+SELECT * FROM user_cergy;
+/***********************************************/
 
 
 
+
+/***********************************************/
 -- Insertion d'outils au hasard dans la table computer_device_cergy
 DROP SEQUENCE seq_tool_cergy;
 CREATE SEQUENCE seq_tool_cergy START WITH 3006 INCREMENT BY 1 MAXVALUE 3015 NOCYCLE NOCACHE;
@@ -41,7 +52,7 @@ SELECT * FROM computer_device_cergy;
 
 -- REMARQUE :
 -- CREATE OR REPLACE SEQUENCE n'existe pas, c'est uniquement pour les procédures
-
+/***********************************************/
 
 
 commit;

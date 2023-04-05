@@ -35,6 +35,7 @@ select * from inventory;
 delete from computer_device_cergy where id = 3050;
 INSERT INTO computer_device_cergy (id, name) VALUES (3050, 'projecteur');
 select * from inventory;
+delete from computer_device_cergy where id = 3050;
 /*****************************************************************************/
 
 
@@ -65,6 +66,8 @@ SHOW ERRORS TRIGGER computer_inventory_trigger;
 
 
 
+
+/*****************************************************************************/
 CREATE OR REPLACE TRIGGER software_inventory_trigger
 AFTER INSERT OR DELETE ON software
 FOR EACH ROW
@@ -82,7 +85,7 @@ BEGIN
   END IF;
 END;
 /
-
+/*****************************************************************************/
 
 
 
@@ -104,9 +107,9 @@ BEGIN
   END IF;
 END;
 /
+/*****************************************************************************/
 
-
-
+/*****************************************************************************/
 CREATE OR REPLACE TRIGGER computer_inventory_trigger
 AFTER INSERT OR DELETE ON computer_device_pau
 FOR EACH ROW
@@ -124,7 +127,7 @@ BEGIN
   END IF;
 END;
 /
-
+/*****************************************************************************/
 
 
 

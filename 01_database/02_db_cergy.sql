@@ -48,7 +48,7 @@ CREATE TABLE user_cergy (
     firstname VARCHAR2(15) NOT NULL,
     lastname VARCHAR2(15) NOT NULL, 
     email VARCHAR2(30) NOT NULL
-)
+);
 
 -- Si le ticket ne concerne que l'ordinateur et pas les softwares ou les devices
 -- alors on autorise les valeurs NULL pour les colonnes software_id et computer_device_id
