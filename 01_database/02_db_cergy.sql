@@ -9,8 +9,9 @@ Etapes à suivre avant de lancer ce script :
 3. Dans la deuxième fenêtre SQL*Plus, lancer le script suivant : @02_db_cergy.sql
 */
 
-drop database link database_cergy_to_pau;
-create database link database_cergy_to_pau connect to user_pau identified by user_pau using 'XE';
+drop database link database_pau_to_cergy;
+create database link database_pau_to_cergy connect to user_pau identified by user_pau using 'XE';
+
 /** ===================== TABLE CREATION ============================== **/
 
 -- CERGY INFRASTRUCTURE

@@ -10,8 +10,8 @@ Etapes à suivre avant de lancer ce script :
 3. Ouvrir une troisième fenêtre SQL*Plus, et se connecter en tant que user_pau
 4. Dans la troisième fenêtre SQL*Plus, lancer le script suivant : @03_db_pau.sql
 */
-drop database link database_pau_to_cergy;
-create database link database_pau_to_cergy connect to user_cergy identified by user_cergy using 'XE';
+drop database link database_cergy_to_pau;
+create database link database_cergy_to_pau connect to user_cergy identified by user_cergy using 'XE';
 
 /** ===================== PAU INFRASTRUCTURE ============================== **/
 

@@ -20,7 +20,7 @@ CREATE MATERIALIZED VIEW materialized_view_tickets
 AS
 SELECT * FROM ticket_cergy
 UNION ALL
-SELECT * FROM ticket_pau@database_pau_to_cergy; 
+SELECT * FROM ticket_pau@database_cergy_to_pau; 
 
 -- tester la requête
 select * from materialized_view_tickets;
