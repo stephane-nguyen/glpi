@@ -9,7 +9,7 @@
 DROP SEQUENCE user_cergy_seq;
 CREATE SEQUENCE user_cergy_seq START WITH 1006 INCREMENT BY 1 MAXVALUE 1015 NOCYCLE NOCACHE;
 BEGIN
-  FOR i IN 1005..1015 LOOP
+  FOR i IN 1006..1015 LOOP
     DELETE FROM computer_device_cergy WHERE id = i;   
     INSERT INTO user_cergy (id, firstname, lastname, email) VALUES (user_cergy_seq.NEXTVAL, 'UTILISATEURS', 'SEQUENCES', 'UTILISATEURS@SEQUENCES.fr');
   END LOOP;
