@@ -7,6 +7,7 @@ set linesize 250;
 
 
 
+-- Créer une procédure qui permet de créer un ticket avec un seul des trois champs suivants : computer_id, computer_device_id, software_id
 CREATE OR REPLACE PROCEDURE create_ticket_unique_problem(
   p_id IN ticket_cergy.id%TYPE,
   p_user_id IN ticket_cergy.user_id%TYPE,
@@ -82,7 +83,4 @@ END;
 /
 
 
-
-
-
-
+commit;

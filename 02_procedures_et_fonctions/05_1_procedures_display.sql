@@ -30,7 +30,7 @@ SET SERVEROUTPUT ON;
 CREATE OR REPLACE PROCEDURE afficher_tickets_cergy_et_pau IS
 BEGIN
    FOR cur IN (SELECT * FROM materialized_view_tickets) LOOP
-      DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || cur.id || ', Description: ' || cur.description || ', Ville: ' || cur.ville);
+      DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || cur.id || ', Description: ' || cur.description || ', City: ' || cur.city);
    END LOOP;
 END;
 /
@@ -43,10 +43,10 @@ EXECUTE afficher_tickets_cergy_et_pau;
 -- PROCEDURE CURSEUR/FETCH : afficher les tickets de Cergy et de Pau
 SET SERVEROUTPUT ON;
 CREATE OR REPLACE PROCEDURE afficher_tickets_cergy_et_pau IS
-    CURSOR curseur IS SELECT id, description, ville, ticket_date FROM materialized_view_tickets;
+    CURSOR curseur IS SELECT id, description, city, ticket_date FROM materialized_view_tickets;
     v_id NUMBER;    
     v_description VARCHAR2(100);
-    v_ville VARCHAR2(100);
+    v_city VARCHAR2(100);
     v_date DATE;
     
     CURSOR curseur_cergy IS SELECT id, firstname, lastname FROM user_cergy;
@@ -65,31 +65,31 @@ BEGIN
     OPEN curseur_pau;
 
     LOOP
-        FETCH curseur INTO v_id, v_description, v_ville, v_date;
+        FETCH curseur INTO v_id, v_description, v_city, v_date;
         EXIT WHEN curseur%NOTFOUND;
  
         DBMS_OUTPUT.PUT('Ticket ID: ' || v_id || CHR(9));
 
-        IF v_ville = 'CERGY' THEN 
+        IF v_city = 'CERGY' THEN 
             FETCH curseur_cergy INTO v_id_cergy, v_first_name_cergy, v_last_name_cergy;    
             DBMS_OUTPUT.PUT(', First Name : '  || v_first_name_cergy || CHR(9) || ', Last Name : ' || v_last_name_cergy || CHR(9));
         END IF;
-        IF v_ville = 'PAU' THEN 
+        IF v_city = 'PAU' THEN 
             FETCH curseur_pau INTO v_id_pau, v_first_name_pau, v_last_name_pau;    
             DBMS_OUTPUT.PUT(', First Name : '  || v_first_name_pau || CHR(9) || ', Last Name : ' || v_last_name_pau || CHR(9));
         END IF;        
 
-        DBMS_OUTPUT.PUT_LINE(', Description: ' || v_description || CHR(9) || ', Ville: ' || v_ville || CHR(9) || ', Date: ' || v_date);
+        DBMS_OUTPUT.PUT_LINE(', Description: ' || v_description || CHR(9) || ', City: ' || v_city || CHR(9) || ', Date: ' || v_date);
 
     END LOOP;
 
     -- AUTRES FACONS DE FAIRE : WHILE / FOR
     -- while curseur%FOUND LOOP
-    --     FETCH curseur INTO v_id, v_description, v_ville;
+    --     FETCH curseur INTO v_id, v_description, v_city;
     -- end loop;
 
     -- FOR cur IN (SELECT * FROM materialized_view_tickets) LOOP
-    --     DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || cur.id || ', Description: ' || cur.description || ', Ville: ' || cur.ville);
+    --     DBMS_OUTPUT.PUT_LINE('Ticket ID: ' || cur.id || ', Description: ' || cur.description || ', City: ' || cur.city);
     -- END LOOP;
 END;
 /

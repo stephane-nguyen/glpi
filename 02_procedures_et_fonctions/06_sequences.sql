@@ -11,6 +11,11 @@ INSERT INTO user_cergy (id, firstname, lastname, email)
 VALUES (user_cergy_seq.NEXTVAL, 'UTILISATEURS', 'SEQUENCES', 'UTILISATEURS@SEQUENCES.fr');
 
 
+--Vérification
+SELECT * FROM computer_device_cergy;
+
+
+
 -- Insertion d'outils au hasard dans la table computer_device_cergy
 DROP SEQUENCE seq_tool_cergy;
 CREATE SEQUENCE seq_tool_cergy START WITH 3006 INCREMENT BY 1 MAXVALUE 3015 NOCYCLE NOCACHE;
