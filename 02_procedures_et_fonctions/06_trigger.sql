@@ -62,6 +62,14 @@ END;
 /
 -- Pour afficher les erreurs du trigger
 SHOW ERRORS TRIGGER computer_inventory_trigger;
+
+-- Commandes pour tester le trigger
+select * from inventory;
+delete from computer_cergy where id = 2050;
+INSERT INTO computer_cergy (id, computer_device_id, software_id, user_id) VALUES (2050, 3001, 4001, 1001);
+select * from inventory;
+delete from computer_cergy where id = 2050;
+
 /*****************************************************************************/
 
 
@@ -108,6 +116,9 @@ BEGIN
 END;
 /
 /*****************************************************************************/
+
+
+
 
 /*****************************************************************************/
 CREATE OR REPLACE TRIGGER computer_inventory_trigger
