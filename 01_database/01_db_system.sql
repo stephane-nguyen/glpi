@@ -6,11 +6,11 @@ GRANT CONNECT, RESOURCE, CREATE VIEW, CREATE MATERIALIZED VIEW, CREATE DATABASE 
 
 /** ===================== TABLESPACE LINK CREATION ============================== **/
 -- Link cergy to pau from Pau database
--- drop database link database_cergy_to_pau;
--- create database link database_cergy_to_pau connect to user_pau identified by user_pau using 'XE';
+drop database link database_cergy_to_pau;
+create database link database_cergy_to_pau connect to user_pau identified by user_pau using 'XE';
 
--- drop database link database_pau_to_cergy;
--- create database link database_pau_to_cergy connect to user_cergy identified by user_cergy using 'XE';
+drop database link database_pau_to_cergy;
+create database link database_pau_to_cergy connect to user_cergy identified by user_cergy using 'XE';
 
 
 -- You have to connect on the correct site to create tables and views

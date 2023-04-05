@@ -14,6 +14,16 @@ create database link database_cergy_to_pau connect to user_pau identified by use
 /** ===================== TABLE CREATION ============================== **/
 
 -- CERGY INFRASTRUCTURE
+--Creation d'un cluster user/ticket/computer
+DROP TABLE ticket_cergy CASCADE CONSTRAINTS;
+DROP TABLE computer_cergy CASCADE CONSTRAINTS;
+DROP CLUSTER my_cluster;
+CREATE CLUSTER my_cluster 
+(user_id NUMBER)
+SIZE 1024
+TABLESPACE users;
+
+-- Creation des tables
 DROP TABLE admin CASCADE CONSTRAINTS;
 CREATE TABLE admin (
     id NUMBER NOT NULL PRIMARY KEY,
@@ -37,7 +47,7 @@ CREATE TABLE user_cergy (
     firstname VARCHAR2(15) NOT NULL,
     lastname VARCHAR2(15) NOT NULL, 
     email VARCHAR2(30) NOT NULL
-);
+)
 
 -- Si le ticket ne concerne que l'ordinateur et pas les softwares ou les devices
 -- alors on autorise les valeurs NULL pour les colonnes software_id et computer_device_id
@@ -51,7 +61,7 @@ CREATE TABLE ticket_cergy (
     ticket_date DATE NOT NULL, 
     description VARCHAR(30) NOT NULL,
     city VARCHAR(10) NOT NULL
-);
+)CLUSTER my_cluster (user_id);
 
 DROP TABLE computer_cergy CASCADE CONSTRAINTS;
 CREATE TABLE computer_cergy (
@@ -59,7 +69,7 @@ CREATE TABLE computer_cergy (
     computer_device_id NUMBER,
     software_id NUMBER,
     user_id NUMBER
-);
+)CLUSTER my_cluster(user_id);
 
 DROP TABLE computer_device_cergy CASCADE CONSTRAINTS;
 CREATE TABLE computer_device_cergy (
@@ -73,6 +83,11 @@ CREATE TABLE software (
     name VARCHAR2(20) NOT NULL
 );
 
+
+-- création de l'index CLUSTER
+CREATE INDEX idx_my_cluster ON CLUSTER my_cluster;
+
+
 ALTER TABLE admin ADD CONSTRAINT fk_inventory FOREIGN KEY (inventory) REFERENCES inventory (id);
 
 ALTER TABLE ticket_cergy ADD CONSTRAINT fk_ticket_user_id FOREIGN KEY (user_id) REFERENCES user_cergy (id);
@@ -83,6 +98,7 @@ ALTER TABLE ticket_cergy ADD CONSTRAINT fk_ticket_computer_id FOREIGN KEY (compu
 ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_user_id FOREIGN KEY (user_id) REFERENCES user_cergy (id);
 ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_computer_device_id FOREIGN KEY (computer_device_id) REFERENCES computer_device_cergy (id);
 ALTER TABLE computer_cergy ADD CONSTRAINT fk_computer_software_id FOREIGN KEY (software_id) REFERENCES software (id);
+
 
 /**
 -- création du cluster
