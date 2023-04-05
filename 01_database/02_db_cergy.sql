@@ -9,7 +9,8 @@ Etapes à suivre avant de lancer ce script :
 3. Dans la deuxième fenêtre SQL*Plus, lancer le script suivant : @02_db_cergy.sql
 */
 
-
+drop database link database_cergy_to_pau;
+create database link database_cergy_to_pau connect to user_pau identified by user_pau using 'XE';
 /** ===================== TABLE CREATION ============================== **/
 
 -- CERGY INFRASTRUCTURE
@@ -96,6 +97,7 @@ ALTER TABLE user_cergy CLUSTER computers_and_users_cluster (id_cluster);
 ALTER TABLE computer_cergy CLUSTER computers_and_users_cluster (id_cluster);
 ALTER TABLE computer_device_cergy CLUSTER computers_and_users_cluster (id_cluster);
 ALTER TABLE software CLUSTER computers_and_users_cluster (id_cluster);  
+
 ****/
 
 /** ======== INSERTIONS DE DONNEES CERGY ========= **/
