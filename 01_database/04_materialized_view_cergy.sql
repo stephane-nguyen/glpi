@@ -11,6 +11,11 @@ Etapes à suivre avant de lancer ce script :
     terminal SQL*Plus connecté en tant que user_pau    
 4. Une fois l'étape 1 2 3 réalisée, lancer le script @04_materialized_view_cergy.sql
    dans le deuxième terminal SQL*Plus connecté en tant que user_cergy
+*/
+
+-- Lignes de code à entrer dans le terminal dès le début pour AFFICHER CORRECTEMENT :
+set wrap off; 
+set linesize 250;
 
 
 /** ===================== CERGY MATERIALIZED VIEW ============================== **/

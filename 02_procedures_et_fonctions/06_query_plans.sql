@@ -1,5 +1,14 @@
 
 
+
+
+-- Lignes de code à entrer dans le terminal dès le début pour AFFICHER CORRECTEMENT :
+set wrap off; 
+set linesize 250;
+
+-- à lancer dans user_cergy
+
+
 -- ####################### QUERY PLANS #######################
 
 
@@ -15,7 +24,6 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY);
 
 
 
---CREATE INDEX index_user ON user_cergy(id);
 EXPLAIN PLAN FOR 
 SELECT firstname, lastname
 FROM user_cergy

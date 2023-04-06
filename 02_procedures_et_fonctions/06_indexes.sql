@@ -5,7 +5,7 @@
 set wrap off; 
 set linesize 250;
 
-
+-- à lancer dans user_cergy
 
 -- ####################### INDEXES #######################
 
