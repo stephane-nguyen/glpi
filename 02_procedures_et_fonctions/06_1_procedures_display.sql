@@ -151,5 +151,28 @@ EXECUTE afficher_user_cergy_1001;
 
 
 
+/****************************************************/
+-- Create a procedure to get the total quantity in the inventory
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE PROCEDURE total_quantity_inventory
+IS
+    v_software_quantity NUMBER;
+    v_computer_quantity NUMBER;
+    v_computer_device_quantity NUMBER;
+    v_inventaire_total_quantity NUMBER; 
+BEGIN
+    SELECT software_quantity INTO v_software_quantity FROM inventory WHERE id = 1001;
+    SELECT computer_quantity INTO v_computer_quantity FROM inventory WHERE id = 1001;
+    SELECT computer_device_quantity INTO v_computer_device_quantity FROM inventory WHERE id = 1001;
+
+    v_inventaire_total_quantity := v_software_quantity + v_computer_quantity + v_computer_device_quantity;
+    DBMS_OUTPUT.PUT_LINE('Total quantity in the inventory : ' || v_inventaire_total_quantity);
+END;
+/
+EXECUTE total_quantity_inventory;
+/****************************************************/
+
+
+
 commit;
 
