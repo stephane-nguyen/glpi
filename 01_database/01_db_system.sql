@@ -1,3 +1,7 @@
+
+ /* removing c## obligation */
+alter session set "_ORACLE_SCRIPT"=true;
+
 /** ===================== USERS AND TABLESPACES CREATION ============================== **/
 CREATE USER user_cergy IDENTIFIED BY user_cergy;
 CREATE USER user_pau IDENTIFIED BY user_pau;
@@ -23,6 +27,9 @@ create database link database_pau_to_cergy connect to user_pau identified by use
 04_materialized_view_cergy.sql
 */
 
+/* unlimited quota on tablespace */ 
+ALTER USER user_cergy quota unlimited on USERS;
+ALTER USER user_pau quota unlimited on USERS;
 
 
 commit;
