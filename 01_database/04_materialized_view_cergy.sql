@@ -30,3 +30,26 @@ select * from materialized_view_tickets;
 
 
 
+
+/****************VUE NON MATERIALISEES********************/
+create or replace view vue as select u.firstname, u.lastname, cc.id as "Computer id Cergy" from user_cergy u, computer_cergy cc where u.id = cc.user_id;
+select * from vue; 
+
+DROP VIEW vuemail;
+create view vuemail 
+as 
+select email from user_cergy uc
+union all  
+select email from user_pau@database_pau_to_cergy up;
+select * from vuemail;
+
+
+
+
+
+
+
+
+
+
+

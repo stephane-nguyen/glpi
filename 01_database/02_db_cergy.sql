@@ -144,8 +144,8 @@ INSERT INTO computer_cergy (id, computer_device_id, software_id, user_id) VALUES
 
 -- Inventory
 DELETE FROM inventory;
-INSERT INTO inventory (id, software_quantity, computer_quantity, computer_device_quantity) VALUES (1001, 100, 50, 70);
-
+INSERT INTO inventory (id, software_quantity, computer_quantity, computer_device_quantity) VALUES (1001, 100, 50, 0);
+-- UPDATE inventory set computer_device_quantity =0  where id = 1001;
 -- Admin
 DELETE FROM admin;
 INSERT INTO admin (id, firstname, lastname, email, inventory) VALUES (1001, 'VoKy', 'TRUONG', 'voky@cergy.fr', 1001);
